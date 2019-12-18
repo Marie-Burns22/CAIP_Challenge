@@ -10,15 +10,29 @@
     </div>
   
     <div class="tab-content " id="page1">
-      <div class="card box-shadow">
-        <div class="accordion" id="accordionExample">
+      <%# <div class="card box-shadow"> %>
+        <div class="accordion" id="accordion">
           <% @videos["items"].each do |v| %>
           
-          <div class="card">
-            <div class="card-header" id="" data-toggle="collapse" data-target="#<%= v["id"] %>" aria-expanded="true" aria-controls="collapseOne">
-                  <%= v["snippet"]["title"] %> <%= v["snippet"]["channelTitle"]%> <%= Date.parse(v["snippet"]["publishedAt"]).to_formatted_s(:long) %>
+          <div class="card container">
+            <div class="card-header" id="movie<%=v["id"]%>">
+              <div class="row mb-0 collapsed" data-toggle="collapse" data-target="#<%= v["id"] %>" aria-expanded="true" aria-controls="movie<%=v["id"]%>"> 
+                <div class="col-1 chevron">
+                  <%= image_tag "Chevron-DOWN_Large.svg" %>
+                </div>
+                <div class="col-4 title">
+                  <%= v["snippet"]["title"] %> 
+                </div>
+                <div class="col-4 channel">
+                  <%= v["snippet"]["channelTitle"]%> 
+                </div>
+                <div class="col-3 date">
+                  <%= Date.parse(v["snippet"]["publishedAt"]).to_formatted_s(:long) %>
+                </div>
+              </div>
             </div>
-            <div id="<%= v["id"] %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          
+            <div id="<%= v["id"] %>" class="collapse" aria-labelledby="movie<%=v["id"]%>" data-parent="#accordion">
               <div class="card-body">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
               </div>
@@ -26,7 +40,7 @@
           </div>
           <% end %>  
         </div>    
-      </div>
+      <%# </div> %>
     </div>
   
     <div class="tab-content hidden" id="page2">

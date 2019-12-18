@@ -8,11 +8,28 @@
 }
 
 .card-header {
-//   position: absolute;
-// left: 16.67%;
-// right: 16.67%;
-// top: 40.08%;
-// bottom: 53.24%;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #252D4D;
+  background: #FFFFFF;
+}
 
-background: #FFFFFF;
+.channel {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.date {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #252D4D;
 }
