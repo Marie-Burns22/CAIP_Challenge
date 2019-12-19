@@ -1,6 +1,10 @@
 <div class="page">
   <div class="page__header">
-    Page
+    <%= link_to "Marie Burns", root_path %>
+  </div>
+
+  <div class="page__search">
+   Search 
   </div>
 
   <div class="tabs">
@@ -9,14 +13,14 @@
       <div class="tab-menu__item" target="#page2">Graph</div>
     </div>
   
-    <div class="tab-content " id="page1">
-      <%# <div class="card box-shadow"> %>
+    <div class="tab-content container" id="page1">
+      <div class="card box-shadow">
         <div class="accordion" id="accordion">
           <% @videos["items"].each do |v| %>
           
           <div class="card container">
             <div class="card-header" id="movie<%=v["id"]%>">
-              <div class="row mb-0 collapsed" data-toggle="collapse" data-target="#<%= v["id"] %>" aria-expanded="true" aria-controls="movie<%=v["id"]%>"> 
+              <div class="row mb-0" data-toggle="collapse" data-target="#<%= v["id"] %>" aria-expanded="true" aria-controls="movie<%=v["id"]%>"> 
                 <div class="col-1 chevron">
                   <%= image_tag "Chevron-DOWN_Large.svg" %>
                 </div>
@@ -40,7 +44,7 @@
           </div>
           <% end %>  
         </div>    
-      <%# </div> %>
+      </div>
     </div>
   
     <div class="tab-content hidden" id="page2">
@@ -50,5 +54,6 @@
     </div>
   </div>
   
+  <div class="page__footer"> </div>
 
 </div>
