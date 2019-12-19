@@ -2,7 +2,18 @@
 
   &__header {
     background: $white;
-    height: 100px;
+    height: 2rem;
+    padding: $base-spacing;
+  }
+
+  &__footer {
+    height: 4rem;
+    background: #252D4D;
+  }
+
+  &__search{
+    height: 6rem;
+    background: $white;
     padding: $base-spacing;
   }
 }
