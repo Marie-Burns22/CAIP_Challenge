@@ -4,20 +4,26 @@
   </div>
 
   <div class="page__search">
-    <%= form_tag(page_path, method: "get") do %>
-        <%= text_field_tag :titles, params[:title], placeholder: 'Enter term to search for video' %>
-        <%= submit_tag "Search Title" %>
+  <form>
+    <%= form_with(url: "/page", method: "get") do %>
+      <%= label_tag(:titles, "Search Titles:") %>
+      <%= text_field_tag(:titles) %>
+      <%= submit_tag("Search Title") %>
     <% end %>
-    <%= form_tag(page_path, method: "get") do %>
-        <%= text_field_tag :tags, params[:tags], placeholder: 'Search tags' %>
-        <%= submit_tag "Search Tags" %>
+    <%= form_with(url: "/page", method: "get") do %>
+      <%= label_tag(:descriptions, "Search descriptions:") %>
+      <%= text_field_tag(:descriptions) %>
+      <%= submit_tag("Search descriptions") %>
     <% end %>
-    <%= form_tag(page_path, method: "get") do %>
-        <%= text_field_tag :descriptions, params[:descriptions], placeholder: 'Search tags' %>
-        <%= submit_tag "Search Descriptions" %>
+    <%= form_with(url: "/page", method: "get") do %>
+        <%= label_tag(:tags, "Search tags:") %>
+        <%= text_field_tag(:tags) %>
+        <%= submit_tag("Search tags") %>
     <% end %>
-    
+    <%= link_to 'Clear search', page_path %>
 
+
+    </form>
   </div>
 
   <div class="tabs">

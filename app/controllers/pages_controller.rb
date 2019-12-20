@@ -1,22 +1,24 @@
 class PagesController < ApplicationController
   def show
     _ids = search[:items].collect{ |i| i[:id][:videoId] }
-    vids = get_full_details(_ids)
+    vids = get_full_details(_ids)["items"]
 
     @videos = []
-    if params[:search]
-      vids["items"].each do |video|
-        # byebug
-        if video["snippet"]["description"].include?(params[:search]) 
-          @videos.push(video)
-        elsif video["snippet"]["title"].include?(params[:search]) 
-          @videos.push(video)
-        elsif video.[]
-        else 
-        end
+    if params[:titles]
+      vids.each do |video|
+        @videos.push(video) if video["snippet"]["title"].downcase.include?(params[:titles].downcase) 
       end
-    else
-      @videos = vids["items"]
+    elsif params[:descriptions]
+      vids.each do |video|
+        @videos.push(video) if video["snippet"]["description"].include(params[:descriptions]) 
+      end
+    elsif params[:tags]
+      vids.each do |video|
+        # byebug
+        @videos.push(video) if video["snippet"]["tags"].include(params[:tags])
+      end
+    elsif !params[:titles] && !params[:descriptions] && !params[:tags]  
+      @videos = vids
     end
 
     respond_to do |format|
