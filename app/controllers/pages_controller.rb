@@ -1,7 +1,28 @@
 class PagesController < ApplicationController
   def show
     _ids = search[:items].collect{ |i| i[:id][:videoId] }
-    @videos = get_full_details(_ids)
+    vids = get_full_details(_ids)
+
+    @videos = []
+    if params[:search]
+      vids["items"].each do |video|
+        # byebug
+        if video["snippet"]["description"].include?(params[:search]) 
+          @videos.push(video)
+        elsif video["snippet"]["title"].include?(params[:search]) 
+          @videos.push(video)
+        elsif video.[]
+        else 
+        end
+      end
+    else
+      @videos = vids["items"]
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @videos }
+    end
   end
 
   def search
@@ -188,4 +209,5 @@ class PagesController < ApplicationController
     yt = YoutubeInteractor.new('', ids)
     yt.get_details
   end
+
 end
