@@ -1,5 +1,7 @@
 {
   "name": "caip_challenge",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "d3-fetch": "^1.1.2"
+  }
 }

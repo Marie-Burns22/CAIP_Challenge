@@ -4,7 +4,20 @@
   </div>
 
   <div class="page__search">
-   Search 
+    <%= form_tag(page_path, method: "get") do %>
+        <%= text_field_tag :titles, params[:title], placeholder: 'Enter term to search for video' %>
+        <%= submit_tag "Search Title" %>
+    <% end %>
+    <%= form_tag(page_path, method: "get") do %>
+        <%= text_field_tag :tags, params[:tags], placeholder: 'Search tags' %>
+        <%= submit_tag "Search Tags" %>
+    <% end %>
+    <%= form_tag(page_path, method: "get") do %>
+        <%= text_field_tag :descriptions, params[:descriptions], placeholder: 'Search tags' %>
+        <%= submit_tag "Search Descriptions" %>
+    <% end %>
+    
+
   </div>
 
   <div class="tabs">
@@ -15,8 +28,11 @@
   
     <div class="tab-content container" id="page1">
       <div class="card box-shadow">
+        <% if !@videos || @videos.length == 0 %>
+        <h2> No Results Found </h2>
+        <% else %>
         <div class="accordion" id="accordion">
-          <% @videos["items"].each do |v| %>
+          <% @videos.each do |v| %>
           
           <div class="card">
             <div id="movie<%=v["id"]%>">
@@ -40,7 +56,9 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-3">
-                    <img class="img-responsive" width="100%" src="<%= v["snippet"]["thumbnails"]["medium"]["url"] %>" />                
+                    <a href="https://www.youtube.com/watch?v=<%=v["id"]%>" >
+                      <img class="img-responsive" width="100%" src="<%= v["snippet"]["thumbnails"]["medium"]["url"] %>" />
+                    </a>                
                   </div>
                   <div class="col-9">
                     <h2 class="info-headings">DESCRIPTION</h2>
@@ -74,12 +92,26 @@
           </div>
           <% end %>  
         </div>    
+      <% end %>
       </div>
     </div>
   
     <div class="tab-content hidden" id="page2">
       <div class="card box-shadow">
-        page2
+        
+
+        
+      <div class="someclass">
+        <svg width="700" height="900">
+      </div>
+</div>
+        
+
+
+
+
+
+
       </div>
     </div>
   </div>
