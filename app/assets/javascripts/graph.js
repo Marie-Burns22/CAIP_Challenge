@@ -1,4 +1,23 @@
-var practice = function () {
+$(document).ready(function () {
+    graph();
+});
+
+var graph = function () {
+
+    d3.json("/page.json").then(data => {
+        const movies = [];
+
+        data.forEach(d => {
+            let movie = {};
+            movie["title"] = d["snippet"]["title"];
+            movie["viewCount"] = +d["statistics"]["viewCount"];
+            movie["likeCount"] = +d["statistics"]["likeCount"];
+            movies.push(movie);
+        });
+        render(movies);
+    });
+
+    
     const svg = d3.select('svg');
     const width = +svg.attr('width');
     const height = +svg.attr('height');
@@ -17,8 +36,6 @@ var practice = function () {
             .offset(d3.stackOffsetNone);
         
         series = stack(movies);
-        console.log(movies)
-        console.log(series);
 
         const yScale = d3.scaleLinear()
             .domain([0, d3.max(series, d => d3.max(d, d => d[1]))])
@@ -56,22 +73,5 @@ var practice = function () {
         svg.append('g').call(yAxis);
     };
     
-    d3.json("/page.json").then(data => {
-        const movies = [];
-
-        data.forEach(d => {
-            let movie = {};
-            movie["title"] = d["snippet"]["title"];
-            movie["viewCount"] = +d["statistics"]["viewCount"];
-            movie["likeCount"] = +d["statistics"]["likeCount"];
-            movies.push(movie);
-        });
-        render(movies);
-    });
-
+   
 };
-
-$(document).ready(function () {
-    practice();
-});
-
